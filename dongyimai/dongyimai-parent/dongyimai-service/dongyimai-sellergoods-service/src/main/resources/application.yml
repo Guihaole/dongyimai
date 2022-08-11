@@ -1,0 +1,66 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: dym-sellergoods
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dongyimaidb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+#    canal生成静态页面测试用的
+#    url: jdbc:mysql://192.168.64.128:33306/dongyimaidb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+    password: 1234
+    type: com.alibaba.druid.pool.DruidDataSource
+    minIdle: 5      # 最小连接池数量
+    maxActive: 20   # 最大连接池数量
+    maxWait: 60000  # 获取连接时最大等待时间
+  redis:
+    host: 192.168.64.128
+    port: 16379
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5 # 每隔5秒发送一次心跳
+    lease-expiration-duration-in-seconds: 10 # 10秒不发送就过期
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port}
+feign:
+  hystrix:
+    enabled: true
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true  #开启驼峰式编写规范
+  type-aliases-package: com.offcn.sellergoods.pojo
+  mapper-locations: classpath:mappers/*.xml
+# 配置sql打印日志
+logging:
+  level:
+    com:
+      offcn: debug
+#swagger整合
+swagger:
+  title: spring-boot-starter-swagger
+  description: Starter for swagger 2.x
+  version: 1.9.0.RELEASE
+  license: Apache License, Version 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  terms-of-service-url: https://github.com/dyc87112/spring-boot-starter-swagger
+  contact:
+    name: guihaole
+    url: http://blog.didispace.com
+    email: 2033443140@qq.com
+  base-package: com.offcn.sellergoods.controller
+  base-path: /**
+#hystrix 配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+          strategy: SEMAPHORE
+          #使用Seamphore，你创建了多少线程，实际就会有多少线程进行执行，只是可同时执行的线程数量会受到限制

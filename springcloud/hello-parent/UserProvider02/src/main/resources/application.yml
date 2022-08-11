@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: UserProvider
+server:
+  port: 8002
+#集群注册方案
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:10086/eureka,http://localhost:10087/eureka
+#我电脑不行，机器不太好，就采用单机版本注册
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka

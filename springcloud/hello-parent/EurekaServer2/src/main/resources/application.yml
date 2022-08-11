@@ -1,0 +1,14 @@
+#内置的tomcat服务启动监听端口号
+server:
+  port: 10087
+#应用名称,集群下的服务名应该都相同
+spring:
+  application:
+    name: EurekaServer
+#EurekaServer配置
+#此时的EurekaServer为集群模式，我们的EurekaServer需要互相注册
+#如果为两个Eureka，就互相注册，两个以上，就用  【，】分隔开
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka #指向高可用另外一台Eureka服务器

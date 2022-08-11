@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>dongyimai-service-api</artifactId>
+        <groupId>com.offcn</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dongyimai-search-service-api</artifactId>
+    <dependencies>
+        <!--goods API依赖-->
+        <dependency>
+            <groupId>com.offcn</groupId>
+            <artifactId>dongyimai-sellergoods-service-api</artifactId>
+            <!--版本根据自己环境填写-->
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--SpringDataES依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

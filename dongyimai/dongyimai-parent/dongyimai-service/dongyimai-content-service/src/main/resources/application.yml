@@ -1,0 +1,51 @@
+server:
+  port: 9004
+spring:
+  application:
+    name: content
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.64.128:33306/dongyimaidb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    username: root
+    password: 1234
+    type: com.alibaba.druid.pool.DruidDataSource
+    minIdle: 5      # 最小连接池数量
+    maxActive: 20   # 最大连接池数量
+    maxWait: 60000  # 获取连接时最大等待时间
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5 # 每隔5秒发送一次心跳
+    lease-expiration-duration-in-seconds: 10 # 10秒不发送就过期
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port}
+feign:
+  hystrix:
+    enabled: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true  #开启驼峰式编写规范
+  type-aliases-package: com.offcn.content.pojo
+# 配置sql打印日志
+logging:
+  level:
+    com.offcn.content: debug
+#swagger整合
+swagger:
+  title: spring-boot-starter-swagger
+  description: Starter for swagger 2.x
+  version: 1.9.0.RELEASE
+  license: Apache License, Version 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  terms-of-service-url: https://github.com/dyc87112/spring-boot-starter-swagger
+  contact:
+    name: guihaole
+    url: http://blog.didispace.com
+    email: 2033443140@qq.com
+  base-package: com.offcn.content.controller
+  base-path: /**

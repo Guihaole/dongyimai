@@ -1,0 +1,40 @@
+server:
+  port: 9007
+spring:
+  application:
+    name: user
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dongyimaidb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 1234
+    minIdle: 5      # 最小连接池数量
+    maxActive: 20   # 最大连接池数量
+    maxWait: 60000  # 获取连接时最大等待时间
+  redis:
+    host: 192.168.64.128
+    port: 16379
+  rabbitmq:
+    host: 192.168.64.128
+    port: 5672
+    username: guest
+    password: guest
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5 # 每隔5秒发送一次心跳
+    lease-expiration-duration-in-seconds: 10 # 10秒不发送就过期
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port}
+feign:
+  hystrix:
+    enabled: true
+# 配置sql打印日志
+logging:
+  level:
+    com:
+      offcn:
+        debug

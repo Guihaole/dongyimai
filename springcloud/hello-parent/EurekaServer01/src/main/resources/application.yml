@@ -1,0 +1,26 @@
+#内置的tomcat服务启动监听端口号
+server:
+  port: 8888
+#应用名称,也是我们Eureka中要显示的服务名
+spring:
+  application:
+    name: EurekaServer01
+#EurekaServer配置
+eureka:
+  instance:
+    hostname: localhost
+  server:
+    #关闭自我保护模式（缺省为打开）
+    # 啥意思：就是我们的Eurake的自我保护机制是开启的，Eureka服务端开启一个定时任务默认60检测一次我们的服务是否还有心跳续约
+    # 如果感知某一个心跳时间在90s内未完成的心跳续约，Eureka会统计15分钟心跳续约是否低于85%，如果发现低于就删除注册中心的服务列表
+    # 但很有可能是因为网络延迟造成的，不是宕机，造成误删，所以关闭掉。
+    enable-self-preservation: false
+    #扫描失效服务的间隔时间（缺省为60*1000ms）
+    #啥意思：当我们关闭自我保护机制后，我们指定扫描服务的一个时间，我允许另一个服务多少秒内响应即可
+    eviction-interval-timer-in-ms: 1000
+  client:
+    # 这两个代表单机版本的eureka,如果是集群要注释掉
+    register-with-eureka: false #此EurekaServer不在注册到其他的注册中心
+    fetch-registry: false       #不在从其他中心中心拉取服务器信息
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka #注册中心访问地址

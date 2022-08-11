@@ -1,0 +1,21 @@
+server:
+  port: 9102
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+feign:
+  hystrix:
+    enabled: true
+spring:
+  thymeleaf:
+    cache: false
+  application:
+    name: item-web
+  main:
+    allow-bean-definition-overriding: true
+
+# 生成静态页的位置
+pagepath: E:\\codeHtml\\

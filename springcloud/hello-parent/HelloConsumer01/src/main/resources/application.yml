@@ -1,0 +1,18 @@
+#应用名称也是服务名称
+spring:
+  application:
+    name: helloConsumer01
+#服务端口号
+server:
+  port: 9002
+#注册中心地址
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8888/eureka
+#注册集群
+#配置EurekaServer注册中心服务器地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka,http://localhost:10087/eureka

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p color="red" th:text="${hello}"></p>
+<table>
+    <tr>
+        <td>下标</td>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>住址</td>
+    </tr>
+    <tr th:each="user,userStop:${users}">
+        <td>
+            下标:<span th:text="${userStop.count}"></span>,
+        </td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.address}"></td>
+    </tr>
+</table>
+<div th:each="map,dataMapStop:${dataMap}">
+    dataMapStop: <p th:text="${dataMapStop}"></p>
+    key: <span th:text="${map.key}"></span><br/>
+    value:<span th:text="${map.value}"></span>
+</div>
+<div th:each="name,namesStop:${names}">
+    dataMapStop: <p th:text="${namesStop}"></p>
+    数组元素: <span th:text="${name} "></span><br/>
+</div>
+日期:<div th:text="${#dates.format(now,'yyyy-MM-dd HH:mm:ss')}"></div>
+年龄:<div th:if="${age>16}">我成年了</div>
+<th/>
+<button th:onclick="'demo('+|${age}|+')'" value="123456">js内联</button>
+<!--<script type="text/javascript">-->
+<!--    function demo() {-->
+<!--        alert("1111")-->
+<!--        alert("[[${guihaole}]]");-->
+<!--    }-->
+<!--</script>-->
+<script th:inline="javascript">
+    function demo() {
+        alert("1111")
+        alert([[${guihaole}]]);
+    }
+</script>
+样式:
+<button th:class="|${class}|">样式</button>
+<button th:style="'color:'+|${class}|">样式</button>
+<button th:text="'我是'+|${class}|"></button>
+</body>
+</html>

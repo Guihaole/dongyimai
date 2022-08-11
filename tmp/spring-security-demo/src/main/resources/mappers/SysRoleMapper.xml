@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.mapper.SysRoleMapper">
+
+    <select id="selectRoleCodesByUserId" resultType="com.edu.pojo.SysRole">
+       SELECT DISTINCT
+          sr.id,
+          sr.role_code,
+          sr.role_name,
+          sr.status,
+          sr.del_flag,
+          sr.create_time,
+          sr.remark
+        FROM
+        sys_role sr  WHERE sr.id in (SELECT role_id FROM sys_user_role WHERE user_id=#{userId})
+    </select>
+
+</mapper>

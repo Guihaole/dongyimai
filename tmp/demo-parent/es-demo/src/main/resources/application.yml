@@ -1,0 +1,22 @@
+elasticsearch:
+  host: 192.168.64.129
+  port: 9200
+server:
+  port: 8080
+#spring\u7684\u6570\u636E\u6E90
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/goods
+    username: root
+    password: 1234
+#\u65E5\u5FD7\u7684\u8F93\u51FA
+logging:
+  level:
+    com:
+      chao:
+        mapper: debug
+#springboot\u6574\u5408mybatis-plus
+mybatis-plus:
+  config-location:
+  type-aliases-package: "com.offcn.pojo"

@@ -1,0 +1,43 @@
+#服务器端口号
+server:
+  port: 9002
+spring:
+  application:
+    name: UserWeb02
+  #开启Spring Cloud的重试功能 需要我们手动开启
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka
+#用于配置某一个服务的负载方式，服务名.ribbon.NFLoadBalancer...: 策略
+#USERPROVIDER: #服务名称
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#指定好重试配置
+USERPROVIDER:
+  ribbon:
+    #配置指定服务的负载均衡策略
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+    # 是否对所有操作都进行重试
+    OkToRetryOnAllOperations: true
+    # 切换实例的重试次数, 一般我们的提供者有几台，就重试几次
+    # 加入有4台我们需要切换重试4次才知道全部都不能访问
+    MaxAutoRetriesNextServer: 1
+    # 对当前实例的重试次数 一般和切换次数相同
+    MaxAutoRetries: 1
+    #Ribbon的连接超时时间
+    ConnectTimeout: 250
+    #Ribbon的数量读取超时时间
+    ReadTimeout: 250
+#设定Hystrix熔断超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000

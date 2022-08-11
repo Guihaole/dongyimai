@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>dongyimai-parent</artifactId>
+        <groupId>com.offcn</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dongyimai-service</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>dongyimai-sellergoods-service</module>
+        <module>dongyimai-file-service</module>
+        <module>dongyimai-content-service</module>
+        <module>dongyimai-canal-service</module>
+        <module>dongyimai-search-service</module>
+        <module>dongyimai-sms-service</module>
+        <module>dongyimai-user-service</module>
+        <module>dongyimai-order-service</module>
+        <module>dongyimai-pay-service</module>
+        <module>dongyimai-seckill-service</module>
+    </modules>
+
+
+</project>

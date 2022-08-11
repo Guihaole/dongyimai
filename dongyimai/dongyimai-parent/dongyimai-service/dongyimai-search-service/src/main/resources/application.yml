@@ -1,0 +1,28 @@
+server:
+  port: 9005
+spring:
+  application:
+    name: search
+  main:
+    allow-bean-definition-overriding: true
+  elasticsearch:
+    rest:
+      uris: 192.168.64.128:9200 #此处配置elasticsearch的访问地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+  instance:
+    prefer-ip-address: true
+feign:
+  hystrix:
+    enabled: true #超时配置
+ribbon:
+  ReadTimeout: 300000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000

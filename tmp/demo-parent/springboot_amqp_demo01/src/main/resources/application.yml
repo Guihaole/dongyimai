@@ -1,0 +1,11 @@
+spring:
+  rabbitmq:
+    host: 192.168.64.128
+    #\u586B\u5199\u7684\u662F5672 \u4E0D\u662F15672
+    port: 5672
+    username: guest
+    password: guest
+    #\u80FD\u8005\u591A\u52B3
+    listener:
+      simple:
+        prefetch: 1
